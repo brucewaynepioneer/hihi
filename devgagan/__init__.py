@@ -25,7 +25,7 @@ app = Client(
     bot_token=BOT_TOKEN,
     workers=10,
     sleep_threshold=20,
-    max_concurrent_transmissions=5
+    max_concurrent_transmissions=1000
 )
 
 
