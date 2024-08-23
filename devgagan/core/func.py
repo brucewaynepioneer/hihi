@@ -1,9 +1,6 @@
-
-#devggn
-
-
 import math
-import time , re
+import time
+import re
 from pyrogram import enums
 from config import CHANNEL_ID, OWNER_ID 
 from devgagan.core import script
@@ -12,9 +9,9 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import cv2
 from pyrogram.errors import FloodWait, InviteHashInvalid, InviteHashExpired, UserAlreadyParticipant, UserNotParticipant
 from datetime import datetime as dt
-import asyncio, subprocess, re, os, time
-
-
+import asyncio
+import subprocess
+import os
 
 async def chk_user(message, user_id):
     user = await premium_users()
@@ -24,29 +21,25 @@ async def chk_user(message, user_id):
         await message.reply_text("Sir, you don't have premium access!!")
         return 1
 
-
-
-async def gen_link(app,chat_id):
-   link = await app.export_chat_invite_link(chat_id)
-   return link
+async def gen_link(app, chat_id):
+    link = await app.export_chat_invite_link(chat_id)
+    return link
 
 async def subscribe(app, message):
-   update_channel = CHANNEL_ID
-   url = await gen_link(app, update_channel)
-   if update_channel:
-      try:
-         user = await app.get_chat_member(update_channel, message.from_user.id)
-         if user.status == "kicked":
-            await message.reply_text("Sorry Sir, You are Banned. Contact -- @devggn")
+    update_channel = CHANNEL_ID
+    url = await gen_link(app, update_channel)
+    if update_channel:
+        try:
+            user = await app.get_chat_member(update_channel, message.from_user.id)
+            if user.status == "kicked":
+                await message.reply_text("Sorry Sir, You are Banned. Contact -- @devggn")
+                return 1
+        except UserNotParticipant:
+            await message.reply_photo(photo="https://graph.org/file/d44f024a08ded19452152.jpg", caption=script.FORCE_MSG.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Join Now...", url=f"{url}")]]))
             return 1
-      except UserNotParticipant:
-         await message.reply_photo(photo="https://graph.org/file/d44f024a08ded19452152.jpg",caption=script.FORCE_MSG.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Join Now...", url=f"{url}")]]))
-         return 1
-      except Exception:
-         await message.reply_text("Something Went Wrong. Contact us @devggn...")
-         return 1
-
-
+        except Exception:
+            await message.reply_text("Something Went Wrong. Contact us @devggn...")
+            return 1
 
 async def get_seconds(time_string):
     def extract_value_and_unit(ts):
@@ -82,27 +75,19 @@ async def get_seconds(time_string):
     else:
         return 0
 
-
-
-
-PROGRESS_BAR = """`\n
+PROGRESS_BAR = """\n
 ╭──⌯════Progress═════⌯──╮
-├⚡️ [●●●●●○○○○○]
+├⚡️ [{0}]
 ├🚀 Speed » {3}/s
 ├📟 Completed » {1}/{2}
-├⏳ Time » {4}\n
+├⏳ Time » {4}
 ╰─═══ ✪ Powered by `[Team SPY](https://t.me/devggn)` ✪ ═══─╯
-`"""
-
-
-
+"""
 
 async def progress_bar(current, total, ud_type, message, start):
-
     now = time.time()
     diff = now - start
     if round(diff % 10.00) == 0 or current == total:
-        # if round(current / total * 100, 0) % 5 == 0:
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
@@ -113,23 +98,23 @@ async def progress_bar(current, total, ud_type, message, start):
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
         progress = "{0}{1}".format(
-            ''.join(["●" for i in range(math.floor(percentage / 10))]),
-            ''.join(["○" for i in range(10 - math.floor(percentage / 10))]))
+            ''.join(["●" for _ in range(math.floor(percentage / 10))]),
+            ''.join(["○" for _ in range(10 - math.floor(percentage / 10))])
+        )
             
-        tmp = progress + PROGRESS_BAR.format( 
-            round(percentage, 2),
+        tmp = PROGRESS_BAR.format( 
+            progress,
             humanbytes(current),
             humanbytes(total),
             humanbytes(speed),
-            # elapsed_time if elapsed_time != '' else "0 s",
             estimated_total_time if estimated_total_time != '' else "0 s"
         )
         try:
             await message.edit(
-                text="{}\n\n{}".format(ud_type, tmp),)             
-                
-        except:
-            pass
+                text="{}\n\n{}".format(ud_type, tmp)
+            )             
+        except Exception as e:
+            print(f"Error updating progress bar: {e}")
 
 def humanbytes(size):
     if not size:
@@ -152,9 +137,7 @@ def TimeFormatter(milliseconds: int) -> str:
         ((str(minutes) + "m, ") if minutes else "") + \
         ((str(seconds) + "s, ") if seconds else "") + \
         ((str(milliseconds) + "ms, ") if milliseconds else "")
-    return tmp[:-2] 
-
-
+    return tmp[:-2]
 
 def convert(seconds):
     seconds = seconds % (24 * 3600)
@@ -163,9 +146,6 @@ def convert(seconds):
     minutes = seconds // 60
     seconds %= 60      
     return "%d:%02d:%02d" % (hour, minutes, seconds)
-
-
-
 
 async def userbot_join(userbot, invite_link):
     try:
@@ -178,23 +158,21 @@ async def userbot_join(userbot, invite_link):
     except FloodWait:
         return "Too many requests, try again later."
     except Exception as e:
-        print(e)
+        print(f"Error joining chat: {e}")
         return "Could not join, try joining manually."
-    
-
 
 def get_link(string):
     regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
-    url = re.findall(regex,string)   
+    url = re.findall(regex, string)   
     try:
         link = [x[0] for x in url][0]
         if link:
             return link
         else:
             return False
-    except Exception:
+    except Exception as e:
+        print(f"Error extracting link: {e}")
         return False
-
 
 def video_metadata(file):
     default_values = {'width': 1, 'height': 1, 'duration': 1}
@@ -223,32 +201,28 @@ def video_metadata(file):
         return default_values
     
 def hhmmss(seconds):
-    return time.strftime('%H:%M:%S',time.gmtime(seconds))
+    return time.strftime('%H:%M:%S', time.gmtime(seconds))
 
 async def screenshot(video, duration, sender):
     if os.path.exists(f'{sender}.jpg'):
         return f'{sender}.jpg'
-    time_stamp = hhmmss(int(duration)/2)
+    time_stamp = hhmmss(int(duration) / 2)
     out = dt.now().isoformat("_", "seconds") + ".jpg"
-    cmd = ["ffmpeg",
-           "-ss",
-           f"{time_stamp}", 
-           "-i",
-           f"{video}",
-           "-frames:v",
-           "1", 
-           f"{out}",
-           "-y"
-          ]
+    cmd = [
+        "ffmpeg",
+        "-ss", f"{time_stamp}", 
+        "-i", f"{video}",
+        "-frames:v", "1", 
+        f"{out}",
+        "-y"
+    ]
     process = await asyncio.create_subprocess_exec(
         *cmd,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE
     )
     stdout, stderr = await process.communicate()
-    x = stderr.decode().strip()
-    y = stdout.decode().strip()
     if os.path.isfile(out):
         return out
     else:
-        None  
+        return None  
