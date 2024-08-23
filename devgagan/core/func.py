@@ -75,8 +75,7 @@ async def get_seconds(time_string):
     else:
         return 0
 
-PROGRESS_BAR = """`\n
-╭──⌯════Progress═════⌯──╮
+PROGRESS_BAR = """`\n╭──⌯════Progress═════⌯──╮
 ├⚡️ [{0}]
 ├🚀 Speed » {3}/s
 ├📟 Completed » {1}/{2}
@@ -111,7 +110,7 @@ async def progress_bar(current, total, ud_type, message, start):
         )
         try:
             await message.edit(
-                text="{}\n\n{}".format(ud_type, tmp)
+                text="{}{}".format(ud_type, tmp)
             )             
         except Exception as e:
             print(f"Error updating progress bar: {e}")
