@@ -91,7 +91,7 @@ PROGRESS_BAR = """`\n
 ├🚀 Speed » {3}/s
 ├📟 Completed » {1}/{2}
 ├⏳ Time » {4}\n
-╰─═══ ✪ Powered by [Team SPY](https://t.me/devggn) ✪ ═══─╯
+╰─═══ ✪ Powered by `[Team SPY](https://t.me/devggn)` ✪ ═══─╯
 `"""
 
 
