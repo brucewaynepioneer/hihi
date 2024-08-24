@@ -75,13 +75,15 @@ async def get_seconds(time_string):
     else:
         return 0
 
-PROGRESS_BAR = """`\n╭───────✪ Progress ✪───────╮
-├⚡ [{0}]
-├🚀 Speed: {3}/s
-├📟 Completed: {1}/{2}
-├⏳ Time: {4}
-╰───────✪ `[Team SPY](https://t.me/devggn)` ✪────────╯
+PROGRESS_BAR = """`\n╭─⌯─────────────⌯─╮
+├ Progress: [{0}]
+├ ⚡ Speed: {3}/s
+├ 📟 Completed: {1}/{2}
+├ ⏳ Time: {4}
+╰─⌯─────────────⌯─╯
+Powered by `[Team SPY](https://t.me/devggn)`
 `"""
+
 
 
 async def progress_bar(current, total, ud_type, message, start):
