@@ -80,7 +80,7 @@ PROGRESS_BAR = """`\n╭─── Progress ───╮
 ├ 🚀 Speed: {3}/s
 ├ 📟 Completed: {1}/{2} MB
 ├ ⏳ Time: {4}
-╰───── `[✪ Team SPY ✪](https://t.me/devggn)` ─────╯
+╰─ `[✪ Team SPY ✪](https://t.me/devggn)` ─────╯
 `"""
 
 
