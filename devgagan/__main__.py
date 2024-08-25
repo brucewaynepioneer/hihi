@@ -7,7 +7,7 @@ from devgagan.modules import ALL_MODULES
 from aiojobs import create_scheduler
 from devgagan.core.mongo.plans_db import check_and_remove_expired_users
 
-# loop = asyncio.get_event_loop()
+loop = asyncio.get_event_loop()
 
 async def schedule_expiry_check():
     scheduler = await create_scheduler()
