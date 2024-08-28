@@ -78,7 +78,7 @@ async def get_seconds(time_string):
 PROGRESS_BAR = """`\n╭─── ✪ Progress ✪
 ├ ⚡ [{0}]
 ├ 🚀 Speed: {3}/s
-├ 📟 Completed: {1}/{2} MB
+├ 📟 Completed: {1}/{2} 
 ├ ⏳ Time: {4}
 ╰─── `[✪ Team SPY ✪](https://t.me/devggn)` 
 `"""
