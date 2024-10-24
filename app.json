@@ -3,8 +3,8 @@
   "description": "A bot that provides IP address transformation based on custom logic.",
   "logo": "https://link-to-logo.com/logo.png",
   "keywords": ["python", "telegram", "bot", "ip", "transform"],
-  "repository": "https://github.com/brucewaynepioneer/hihi",
-  "success_url": "https://example-success-url.com",
+  "repository": "https://github.com/brucewaynepioneer/hihi",  // Replace with the correct URL format for public GitHub repository
+  "success_url": "https://example-success-url.com", // Can be any valid URL or remove it if unnecessary
   "env": {
     "API_ID": {
       "description": "Get this value from https://my.telegram.org",
