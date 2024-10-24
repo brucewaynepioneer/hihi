@@ -8,7 +8,10 @@ Contact: [Telegram](https://t.me/devggn)
 ---
 
 ## ABOUT THIS BRANCH
-This branch is purely based on `Pyrogram V2` with more stability
+This branch is purely based on `Pyrogram V2` with more stability 
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/brucewaynepioneer/hihi)
+
 
 ---
 
