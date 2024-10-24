@@ -1,10 +1,10 @@
 {
-  "name": "Save Restricted Content Bot master-v1 branch",
-  "description": "Save Restricted Content Bot by Team SPY",
-  "logo": "https://lh3.googleusercontent.com/-HPcn7AqepNg/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfknb1BkQiq-8_KUVOYcNAJ4swKivDQ/photo.jpg",
-  "keywords": ["python3", "telegram", "MusicBot", "telegram-bot", "pyrogram"],
-  "repository": "https://github.com/devgaganin/save_restricted-content-telegram-bot-repo",
-  "success_url": "https://devgagan.in",
+  "name": "HIHI Bot",
+  "description": "A bot that provides IP address transformation based on custom logic.",
+  "logo": "https://link-to-logo.com/logo.png",
+  "keywords": ["python", "telegram", "bot", "ip", "transform"],
+  "repository": "https://github.com/brucewaynepioneer/hihi",
+  "success_url": "https://example-success-url.com",
   "env": {
     "API_ID": {
       "description": "Get this value from https://my.telegram.org",
@@ -17,39 +17,33 @@
       "required": true
     },
     "BOT_TOKEN": {
-      "description": "A Bot's token from Botfather",
+      "description": "Your bot token from @BotFather",
       "value": "your_bot_token_here",
       "required": true
     },
     "MONGO_DB": {
-      "description": "Get a MongoDB URL from https://cloud.mongodb.com.",
-      "value": "your_mongodb_url_here",
+      "description": "Your MongoDB database URL.",
+      "value": "your_mongo_db_url_here",
       "required": true
     },
     "OWNER_ID": {
-      "description": "The user ID of the user whom you would like to add as OWNER.",
+      "description": "The Telegram user ID of the bot owner.",
       "value": "owner_user_id_here",
       "required": true
     },
-    "SUDO_USERS": {
-      "description": "Other Admins' IDs (optional)",
-      "value": "",
-      "required": false
-    },
     "CHANNEL_ID": {
-      "description": "Enter Channel ID (-100) and make bot admin there",
-      "value": "channel_id_here",
+      "description": "ID of the Telegram channel for the bot logs.",
+      "value": "your_channel_id_here",
       "required": true
     },
     "LOG_GROUP": {
-      "description": "Enter Log Channel/Group ID (-100) and make bot admin there",
-      "value": "log_group_id_here",
+      "description": "Group ID for logging bot activity.",
+      "value": "your_log_group_id_here",
       "required": true
     }
   },
   "buildpacks": [
     { "url": "heroku/python" },
-    { "url": "heroku/nodejs" },
     { "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git" }
   ],
   "stack": "container"
